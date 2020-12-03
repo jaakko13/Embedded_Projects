@@ -417,7 +417,7 @@ void TurnAmount(int turnDegrees) {
     Serial.println("########################################");
     Serial.println("########################################");
     Serial.println("########################################");
-    if(desiredDegree > low && desiredDegree < high) {
+    if(currentDegree > low && currentDegree < high) {
       //DriveDistance(0, 0);
       Serial.println("Returning true");/////////////////////////////////// to stop it 
       analogWrite(PWM_Motor_L, 0); //Left thing doesnt go vroom vroom. 
@@ -445,7 +445,7 @@ void TurnAmount(int turnDegrees) {
     Serial.println("########################################");
     Serial.println("########################################");
     Serial.println("########################################");
-    if(desiredDegree > low && desiredDegree < high) {
+    if(currentDegree > low && currentDegree < high) {
       //DriveDistance(0, 0);
       Serial.println("Returning true");/////////////////////////////////// to stop it
       analogWrite(PWM_Motor_L, 0); //Left thing doesnt go vroom vroom. 
