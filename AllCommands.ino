@@ -428,38 +428,42 @@ void TurnAmount(int turnDegrees) {
     Serial.println("What're you doing here");
     
   }
-  else if(turnDegrees < 0) {
-    //turn left
-    Serial.println("turn left statement");
-    if(baseDesiredDegree < 0) baseDesiredDegree += 360;
-    for(int i = 0; (currentDegree - desiredDegree) < 4 || (currentDegree - desiredDegree) < -4 ; i++) {
-      DriveDistance(-1, -1);
-      //Jaakko replace this ^
-      currentDegree = compass_val();
-      Serial.print("currentDegree = ");
-      Serial.println(currentDegree);
-      Serial.print("baseDesiredDegree = ");
-      Serial.println(baseDesiredDegree);
-      if(i > 360) { Serial.println("error in turning left to amount"); return false; }//error taking way too long to reach 
+    else if(turnDegrees < 0) {
+      //turn left
+      if(baseDesiredDegree < 0) baseDesiredDegree += 360;
+      Serial.println("turn left statement");
+      //difference > 2 || difference < -2
+      for(int i = 0; (desiredDegree - currentDegree) < 4 || (desiredDegree - currentDegree) < -4 ; i++) {
+        DriveDistance(-1, -1);
+        //Jaakko replace this ^
+        currentDegree = compass_val();
+        Serial.print("currentDegree = ");
+        Serial.println(currentDegree);
+        Serial.print("baseDesiredDegree = ");
+        Serial.println(baseDesiredDegree);
+
+        Serial.print("DesiredDegree = ");
+        Serial.println(desiredDegree);
+        if(i > 360) { Serial.println("error in turning right to amount"); return false; } //error taking way too long to reach
     } 
     Serial.println("########################################");
     Serial.println("########################################");
     Serial.println("########################################");
     if(currentDegree > low && currentDegree < high) {
       //DriveDistance(0, 0);
-      Serial.println("Returning true");/////////////////////////////////// to stop it
+      Serial.println("Returning true");/////////////////////////////////// to stop it 
       analogWrite(PWM_Motor_L, 0); //Left thing doesnt go vroom vroom. 
       analogWrite(PWM_Motor_R, 0); //Right thing doesnt go vroom vroom.
-      return true; //analog write 0 to stop it do also for below
+      return true;
     }
     //DriveDistance(0, 0);
     Serial.println("What're you doing here");
-  }
-  else {
-    //already at zero, techinically it succeeded?
-    return false; //temp
-  }
-  return false;
+    }
+    else {
+      //already at zero, techinically it succeeded?
+      return false; //temp
+    }
+    return false;
 }
 
 
