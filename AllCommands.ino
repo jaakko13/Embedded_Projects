@@ -357,6 +357,10 @@ void TurnAmount(int turnDegrees) {
   Serial.println(currentDegree);
   int desiredDegree = currentDegree + turnDegrees;
   int low, high;
+
+  low = 0;
+  high = 0;
+  
   low = desiredDegree - 5;
   high = desiredDegree + 5;
 
